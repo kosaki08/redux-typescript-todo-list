@@ -1,5 +1,7 @@
 # Simple Todo List
 
+[CodeSandbox](https://codesandbox.io/s/redux-typescript-todo-list-api-fetch-wrgy8)
+
 ## 機能
 
 - タスクを JSON Placeholder API から読み込み
