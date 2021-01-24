@@ -6,7 +6,7 @@ import {
   ToggleTodoCompletedActionType
 } from "./todos.types";
 import { ActionTypes } from "../todos/todos.types";
-import { initialTodoListData } from "../../data/todo-list-data";
+import { initialTodoListData } from "../../../data/todo-list-data";
 
 type State = TodoItemType[];
 

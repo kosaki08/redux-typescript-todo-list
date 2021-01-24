@@ -1,6 +1,6 @@
 import fetch from "isomorphic-unfetch";
 import { TodoItemType, FetchedItemType } from "./todos.types";
-import { initialTodoListData } from "../../data/todo-list-data";
+import { initialTodoListData } from "../../../data/todo-list-data";
 
 export async function fetchTodoItems() {
   let todoItems: TodoItemType[] = [];
