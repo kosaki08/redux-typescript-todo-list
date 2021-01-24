@@ -1,72 +1,29 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
-import { StoreState } from "../../../redux/reducers";
-import { TodoItemType } from "../../../types/todo-list.type";
+import TodoItem from "../todo-list-item/todo-list-item.component";
 import {
-  FetchTodoType,
-  DeleteTodoType,
-  ToggleCompletedType
-} from "../../../types/todo-list.type";
-import {
-  FetchTodo,
-  DeleteTodo,
-  ToggleTodoCompleted
-} from "../../../redux/actions";
+  TodoItemType,
+  FetchTodoFuncType
+} from "../../../redux/todos/todos.types";
+import { fetchTodo } from "../../../redux/todos/todos.actions";
 
 type Props = {
   todos: TodoItemType[];
-  DeleteTodo: DeleteTodoType;
-  ToggleTodoCompleted: ToggleCompletedType;
-  FetchTodo: FetchTodoType;
+  fetchTodo: FetchTodoFuncType;
 };
 
-const Todo: React.FC<Props> = ({
-  todos,
-  FetchTodo,
-  DeleteTodo,
-  ToggleTodoCompleted
-}) => {
-  function handleRemoveClick(id: string) {
-    DeleteTodo(id);
-  }
-
-  function handleCheck(id: string) {
-    ToggleTodoCompleted(id);
-  }
-
+const TodoList: React.FC<Props> = ({ todos, fetchTodo }) => {
   useEffect(() => {
-    FetchTodo();
-  }, [FetchTodo]);
+    fetchTodo();
+  }, [fetchTodo]);
 
   return (
     <>
       {todos.length > 0 && (
         <ul>
           {todos.map((item) => (
-            <li key={item.id}>
-              <label htmlFor={`todo-${item.id}`}>
-                <input
-                  type="checkbox"
-                  id={`todo-${item.id}`}
-                  onChange={() => handleCheck(item.id)}
-                  checked={item.isCompleted}
-                />
-                <span
-                  style={{
-                    textDecoration: item.isCompleted ? "line-through" : "none"
-                  }}
-                >
-                  {item.text}
-                </span>
-              </label>
-              <button
-                data-itemid={item.id}
-                onClick={() => handleRemoveClick(item.id)}
-              >
-                Delete
-              </button>
-            </li>
+            <TodoItem item={item} key={item.id} />
           ))}
         </ul>
       )}
@@ -74,12 +31,14 @@ const Todo: React.FC<Props> = ({
   );
 };
 
-const mapSateToProps = (state: StoreState) => {
+export type StoreState = {
+  todos: TodoItemType[];
+};
+
+const mapStateToProps = (state: StoreState) => {
   return { todos: state.todos };
 };
 
-export default connect(mapSateToProps, {
-  FetchTodo,
-  DeleteTodo,
-  ToggleTodoCompleted
-})(Todo);
+export default connect(mapStateToProps, {
+  fetchTodo
+})(TodoList);

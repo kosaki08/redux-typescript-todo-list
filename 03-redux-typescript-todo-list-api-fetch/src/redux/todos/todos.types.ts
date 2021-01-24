@@ -1,4 +1,9 @@
-import { ActionTypes } from "../redux/actions/action-types";
+export enum ActionTypes {
+  TODO_ADD_ITEM,
+  TODO_DELETE_ITEM,
+  TODO_TOGGLE_ITEM_COMPLETED,
+  TODO_FETCH_ITEMS
+}
 
 export type TodoItemType = {
   id: string;
@@ -6,13 +11,13 @@ export type TodoItemType = {
   isCompleted: boolean;
 };
 
-export type FetchTodoType = () => void;
+export type FetchTodoFuncType = () => void;
 
-export type AddTodoType = (todo: TodoItemType) => void;
+export type AddTodoFuncType = (todo: TodoItemType) => void;
 
-export type DeleteTodoType = (itemId: string) => void;
+export type DeleteTodoFuncType = (itemId: string) => void;
 
-export type ToggleCompletedType = (itemId: string) => void;
+export type ToggleCompletedFuncType = (itemId: string) => void;
 
 export type FetchTodoActionType = {
   type: ActionTypes.TODO_FETCH_ITEMS;
@@ -31,14 +36,14 @@ export type AddTodoActionType = {
 export type DeleteTodoActionType = {
   type: ActionTypes.TODO_DELETE_ITEM;
   payload: {
-    itemId: number;
+    itemId: string;
   };
 };
 
 export type ToggleTodoCompletedActionType = {
   type: ActionTypes.TODO_TOGGLE_ITEM_COMPLETED;
   payload: {
-    itemId: number;
+    itemId: string;
   };
 };
 

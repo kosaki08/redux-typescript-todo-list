@@ -2,15 +2,14 @@ import React, { useEffect, useState, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { connect } from "react-redux";
 
-import { StoreState } from "../../../redux/reducers";
-import { AddTodo } from "../../../redux/actions";
-import { AddTodoType } from "../../../types/todo-list.type";
+import { addTodo } from "../../../redux/todos/todos.actions";
+import { AddTodoFuncType } from "../../../redux/todos/todos.types";
 
 type Props = {
-  AddTodo: AddTodoType;
+  addTodo: AddTodoFuncType;
 };
 
-const TodoInput: React.FC<Props> = ({ AddTodo }) => {
+const TodoInput: React.FC<Props> = ({ addTodo }) => {
   const [value, setValue] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -31,7 +30,7 @@ const TodoInput: React.FC<Props> = ({ AddTodo }) => {
       return;
     }
     const newItem = { id: uuidv4(), text: value, isCompleted: false };
-    AddTodo(newItem);
+    addTodo(newItem);
     setValue("");
     focusInput();
   }
@@ -54,10 +53,6 @@ const TodoInput: React.FC<Props> = ({ AddTodo }) => {
   );
 };
 
-const mapSateToProps = (state: StoreState) => {
-  return { todos: state.todos };
-};
-
-export default connect(mapSateToProps, {
-  AddTodo
+export default connect(null, {
+  addTodo
 })(TodoInput);

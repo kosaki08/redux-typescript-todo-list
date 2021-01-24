@@ -1,6 +1,6 @@
 # Simple Todo List
 
-[CodeSandbox](https://codesandbox.io/s/redux-typescript-todo-list-api-fetch-wrgy8)
+[CodeSandbox](https://codesandbox.io/s/redux-typescript-todo-list-api-fetch-u0dix)
 
 ## 機能
 

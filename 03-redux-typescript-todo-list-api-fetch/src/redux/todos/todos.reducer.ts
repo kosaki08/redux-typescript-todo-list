@@ -1,13 +1,20 @@
-import { TodoItemType } from "../../types/todo-list.type";
-import { ActionTypes } from "../actions/action-types";
+import {
+  TodoItemType,
+  FetchTodoActionType,
+  AddTodoActionType,
+  DeleteTodoActionType,
+  ToggleTodoCompletedActionType
+} from "./todos.types";
+import { ActionTypes } from "../todos/todos.types";
 import { initialTodoListData } from "../../data/todo-list-data";
 
 type State = TodoItemType[];
 
-type Action = {
-  type: ActionTypes;
-  payload: any;
-};
+type Action =
+  | FetchTodoActionType
+  | AddTodoActionType
+  | DeleteTodoActionType
+  | ToggleTodoCompletedActionType;
 
 export const TodoReducer = (
   state: State = initialTodoListData,
